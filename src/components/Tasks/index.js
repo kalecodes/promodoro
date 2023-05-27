@@ -17,7 +17,7 @@ function Tasks()  {
             className="h-3/5 mr-5"
           />
         </div>
-        <div id="task-container" className="h-9/10 overflow-scroll">
+        <div id="task-container" className="h-4/5 overflow-scroll">
           <div className="w-9/10 h-1/10 mt-5 mx-auto bg-gray-300 flex justify-between items-center">
             <p className="text-left ml-5">This is an example task</p>
             <img 
@@ -50,6 +50,11 @@ function Tasks()  {
                 className="h-3/5 mx-1"
               />
             </div>
+          </div>
+        </div>
+        <div className="h-1/10 flex justify-center items-center">
+          <div className="w-1/3 h-1/2 bg-gray-300">
+            0/2 Completed
           </div>
         </div>
       </div>
