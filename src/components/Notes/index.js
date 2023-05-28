@@ -5,9 +5,9 @@ function Notes() {
     <div className="h-1/2 flex flex-col">
       <div className="text-2xl">Notes</div>
       <div className="w-9/10 h-4/5 m-auto">
-        <div className="">
+        <textarea placeholder="Keep your notes here..." className="w-full h-full p-2">
 
-        </div>
+        </textarea>
       </div>
     </div>
     
