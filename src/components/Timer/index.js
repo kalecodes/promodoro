@@ -1,4 +1,5 @@
 import React from "react";
+import Time from "../Time";
 
 function Timer() {
   return (
@@ -11,14 +12,7 @@ function Timer() {
           <button className="text-xl py-2 px-4 bg-gray-300 border-2 border-black">45</button>
           <button className="text-xl py-2 px-4 bg-gray-300 border-2 border-black">+</button>
         </div>
-        <div className="h-3/4 flex flex-col justify-evenly items-center">
-          <img 
-            src={require('../../assets/icons/start-dark.png')}
-            alt="start timer"
-            className=""
-          />
-          <div className="text-4xl">25:00:00</div>
-        </div>
+        <Time />
         <div className="flex justify-evenly">
           <div className="text-xl">Completed: 0</div>
           <div className="text-xl">Break in: 4</div>
