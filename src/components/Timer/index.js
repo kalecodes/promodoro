@@ -6,10 +6,10 @@ function Timer() {
       <div className="text-2xl">Timer</div>
       <div className="w-9/10 h-4/5 m-auto">
         <div>
-          <button className="text-xl py-2 px-3 bg-gray-300 border-2 border-black">25</button>
-          <button className="text-xl py-2 px-3 bg-gray-300 border-2 border-black">35</button>
-          <button className="text-xl py-2 px-3 bg-gray-300 border-2 border-black">45</button>
-          <button className="text-xl py-2 px-3 bg-gray-300 border-2 border-black">+</button>
+          <button className="text-xl py-2 px-4 bg-gray-300 border-2 border-black">25</button>
+          <button className="text-xl py-2 px-4 bg-gray-300 border-2 border-black">35</button>
+          <button className="text-xl py-2 px-4 bg-gray-300 border-2 border-black">45</button>
+          <button className="text-xl py-2 px-4 bg-gray-300 border-2 border-black">+</button>
         </div>
         <div className="h-3/4 flex flex-col justify-evenly items-center">
           <img 
