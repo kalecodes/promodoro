@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App h-screen">
       <Header />
-      <main className="flex flex-col md:flex-row h-9/10">
+      <main className="flex flex-col lg:flex-row lg:h-9/10">
         <Tasks />
-        <section className="md:w-1/2">
+        <section className="lg:w-1/2 order-1 lg:order-none">
           <Timer />
           <Notes />
         </section>
