@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
+import BreakModal from "../BreakModal";
 
 function Timer() {
   // need ref to keep track of interval and stop when needed
@@ -11,23 +12,20 @@ function Timer() {
   const [breakModal, setBreakModal] = useState(false);
   const [breakTime, setBreakTime] = useState(5);
 
-  const startBreak = () => {
-    
-  }
-
-  const triggerBreakModal = () => {
+  const endTimer = () => {
     clearInterval(Ref.current);
-    console.log(timer, timerStarted, completed, remaining);
+    setTimer(selectedTimer + ':00');
+    setTimerStarted(false);
+    setCompleted(completed + 1);
+    setRemaining(remaining - 1);
 
     if (completed < 4) {
       setBreakTime(5)
     } else (
       setBreakTime(20)
     )
-
     
-    breakModal(true);
-    startBreak();
+    toggleModal();
   }
 
   const getTimeRemaining = (e) => {
@@ -47,12 +45,7 @@ function Timer() {
         (seconds > 9 ? seconds : '0' + seconds)
       )
     } else {
-      setTimer(selectedTimer + ':00');
-      setTimerStarted(false);
-      setCompleted(completed + 1);
-      setRemaining(remaining - 1);
-
-      triggerBreakModal();
+      endTimer();
     }
   }
 
@@ -83,8 +76,13 @@ function Timer() {
     resetTimer(getDeadTime());
   }
 
+  const toggleModal = () => {
+    setBreakModal(!breakModal);
+  }
+
   return (
     <div className="h-1/3 lg:h-1/2 flex flex-col">
+      {breakModal && <BreakModal breakTime={breakTime} onClose={toggleModal} /> }
       <div className="text-2xl">Timer</div>
       <div className="w-9/10 h-4/5 m-auto">
         <div>
