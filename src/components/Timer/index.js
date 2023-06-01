@@ -8,6 +8,27 @@ function Timer() {
   const [timerStarted, setTimerStarted] = useState(false);
   const [completed, setCompleted] = useState(0);
   const [remaining, setRemaining] = useState(4);
+  const [breakModal, setBreakModal] = useState(false);
+  const [breakTime, setBreakTime] = useState(5);
+
+  const startBreak = () => {
+    
+  }
+
+  const triggerBreakModal = () => {
+    clearInterval(Ref.current);
+    console.log(timer, timerStarted, completed, remaining);
+
+    if (completed < 4) {
+      setBreakTime(5)
+    } else (
+      setBreakTime(20)
+    )
+
+    
+    breakModal(true);
+    startBreak();
+  }
 
   const getTimeRemaining = (e) => {
     const total = Date.parse(e) - Date.parse(new Date());
@@ -31,7 +52,7 @@ function Timer() {
       setCompleted(completed + 1);
       setRemaining(remaining - 1);
 
-      console.log(timer, timerStarted, completed, remaining);
+      triggerBreakModal();
     }
   }
 
