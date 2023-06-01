@@ -7,12 +7,10 @@ function Timer() {
   const [timer, setTimer] = useState('25:00');
 
   const getTimeRemaining = (e) => {
-    console.log(e);
     const total = Date.parse(e) - Date.parse(new Date());
     const minutes = Math.floor((total / 1000 / 60) % 60);
     const seconds = Math.floor((total / 1000) % 60);
 
-    console.log(total, minutes, seconds);
     return {total, minutes, seconds};
   }
 
@@ -27,28 +25,8 @@ function Timer() {
     }
   }
 
-  // const clearTimer = (e) => {
-  //   setTimer(selectedTimer);
-
-  //   if (Ref.current) clearInterval(Ref.current);
-  //   const id = setInterval(() => {
-  //     startTimer(e);
-  //   }, 1000)
-  //   Ref.current = id;
-  // }
-
-  const getDeadTime = () => {
-    let deadline = new Date();
-    console.log(deadline);
-    deadline.setMinutes(deadline.getMinutes() + selectedTimer);
-
-    console.log(deadline);
-    return deadline;
-  }
-
   const resetTimer = (e) => {
     setTimer(selectedTimer + ':00');
-    console.log(timer);
 
     if (Ref.current) clearInterval(Ref.current);
     const id = setInterval(() => {
@@ -57,22 +35,25 @@ function Timer() {
     Ref.current = id;
   }
 
+  const getDeadTime = () => {
+    let deadline = new Date();
+    deadline.setMinutes(deadline.getMinutes() + selectedTimer);
+
+    return deadline;
+  }
+
   const handleClick = () => {
     resetTimer(getDeadTime());
   }
-  // start timer as soon as possible when component mounts
-  // useEffect(() => {
-  //   clearTimer(getDeadTime());
-  // }, []);
 
   return (
     <div className="h-1/3 lg:h-1/2 flex flex-col">
       <div className="text-2xl">Timer</div>
       <div className="w-9/10 h-4/5 m-auto">
         <div>
-          <button className="text-xl py-2 px-4 rounded-l bg-gray-400" onClick={() => {setSelectedTimer('25:00'); setTimer('25:00')}}>25</button>
-          <button className="text-xl py-2 px-4 bg-gray-300" onClick={() => {setSelectedTimer('35:00'); setTimer('35:00')}}>35</button>
-          <button className="text-xl py-2 px-4 bg-gray-300" onClick={() => {setSelectedTimer('45:00'); setTimer('45:00')}}>45</button>
+          <button className="text-xl py-2 px-4 rounded-l bg-gray-300" onClick={() => {setSelectedTimer(25); setTimer('25:00')}}>25</button>
+          <button className="text-xl py-2 px-4 bg-gray-300" onClick={() => {setSelectedTimer(35); setTimer('35:00')}}>35</button>
+          <button className="text-xl py-2 px-4 bg-gray-300" onClick={() => {setSelectedTimer(45); setTimer('45:00')}}>45</button>
           <button className="text-xl py-2 px-4 rounded-r bg-gray-300">+</button>
         </div>
         <div className="h-3/4 flex flex-col justify-evenly items-center">
