@@ -3,7 +3,7 @@ import BreakModal from "../BreakModal";
 
 function Timer() {
   // need ref to keep track of interval and stop when needed
-  const Ref = useRef(null);
+  const Ref = useRef([]);
   const [selectedTimer, setSelectedTimer] = useState(1)
   const [timer, setTimer] = useState('25:00');
   const [timerStarted, setTimerStarted] = useState(false);
@@ -13,7 +13,7 @@ function Timer() {
   const [breakTime, setBreakTime] = useState(5);
 
   const endTimer = () => {
-    clearInterval(Ref.current);
+    clearInterval(Ref.current[0]);
     setTimer(selectedTimer + ':00');
     setTimerStarted(false);
     setCompleted(completed + 1);
@@ -24,7 +24,7 @@ function Timer() {
     } else (
       setBreakTime(20)
     )
-    
+
     toggleModal();
   }
 
@@ -37,6 +37,7 @@ function Timer() {
   }
 
   const startTimer = (e) => {
+    console.log('timer active')
     let { total, minutes, seconds } = getTimeRemaining(e);
 
     if (total >= 0) {
@@ -52,11 +53,11 @@ function Timer() {
   const resetTimer = (e) => {
     setTimer(selectedTimer + ':00');
 
-    if (Ref.current) clearInterval(Ref.current);
+    if (Ref.current[0]) clearInterval(Ref.current[0]);
     const id = setInterval(() => {
       startTimer(e);
     }, 1000)
-    Ref.current = id;
+    Ref.current[0] = id;
   }
 
   const getDeadTime = () => {
@@ -82,7 +83,7 @@ function Timer() {
 
   return (
     <div className="h-1/3 lg:h-1/2 flex flex-col">
-      {breakModal && <BreakModal breakTime={breakTime} onClose={toggleModal} /> }
+      {breakModal && <BreakModal breakTime={breakTime} breakModal={breakModal} setBreakModal={setBreakModal} Ref={Ref} /> }
       <div className="text-2xl">Timer</div>
       <div className="w-9/10 h-4/5 m-auto">
         <div>
