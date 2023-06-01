@@ -3,8 +3,11 @@ import React, { useEffect, useState, useRef } from "react";
 function Timer() {
   // need ref to keep track of interval and stop when needed
   const Ref = useRef(null);
-  const [selectedTimer, setSelectedTimer] = useState(25)
+  const [selectedTimer, setSelectedTimer] = useState(1)
   const [timer, setTimer] = useState('25:00');
+  const [timerStarted, setTimerStarted] = useState(false);
+  const [completed, setCompleted] = useState(0);
+  const [remaining, setRemaining] = useState(4);
 
   const getTimeRemaining = (e) => {
     const total = Date.parse(e) - Date.parse(new Date());
@@ -22,6 +25,13 @@ function Timer() {
         (minutes > 9 ? minutes: '0' + minutes) + ':' +
         (seconds > 9 ? seconds : '0' + seconds)
       )
+    } else {
+      setTimer(selectedTimer + ':00');
+      setTimerStarted(false);
+      setCompleted(completed + 1);
+      setRemaining(remaining - 1);
+
+      console.log(timer, timerStarted, completed, remaining);
     }
   }
 
@@ -43,6 +53,12 @@ function Timer() {
   }
 
   const handleClick = () => {
+    setTimerStarted(true);
+
+    if (timerStarted) {
+      console.log('timer cannot be paused');
+      return;
+    }
     resetTimer(getDeadTime());
   }
 
@@ -66,8 +82,8 @@ function Timer() {
           <div className="text-3xl">{timer}</div>
         </div>
         <div className="flex justify-evenly">
-          <div className="text-xl">Completed: 0</div>
-          <div className="text-xl">Break in: 4</div>
+          <div className="text-xl">Completed: {completed}</div>
+          <div className="text-xl">Break in: {remaining}</div>
         </div>
       </div>
     </div>
