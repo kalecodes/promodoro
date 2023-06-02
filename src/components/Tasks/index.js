@@ -9,6 +9,10 @@ function Tasks()  {
     setNewTaskModal(!newTaskModal);
   }
 
+  const clearTasks = () =>{
+    
+  }
+
   return(
     <section className="mt-5 lg:mt-0 lg:w-1/2 flex flex-col order-2 lg:order-none">
       {newTaskModal && <TaskModal handleNewTask={handleNewTask}/>}
@@ -25,6 +29,7 @@ function Tasks()  {
             src={require('../../assets/icons/clear-dark.png')} 
             alt="clear all tasks"
             className="w-9"
+            onClick={clearTasks}
           />
         </div>
         <div id="task-container" className="h-5/6 overflow-scroll order-3 lg:order-none">
