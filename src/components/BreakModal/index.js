@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function BreakModal({ breakTime, breakModal, setBreakModal, Ref }) {
+function BreakModal({ pomCount, breakModal, setBreakModal, Ref }) {
 
   const [breakTimer, setBreakTimer] = useState('00:00:00');
 
@@ -52,11 +52,15 @@ function BreakModal({ breakTime, breakModal, setBreakModal, Ref }) {
       <div className="w-3/5 h-3/5 mt-28 mx-auto bg-white rounded flex flex-col justify-evenly">
         <div className="text-3xl">Break</div>
         <div>
-          {breakTime === 20 
-            ? <div className="text-xl">Congrats! You have completed 4 pomodoros. Time for a longer break!</div>
-            : <div className="text-xl">Nice job staying focused! Time for a short break.</div>
+          {pomCount === 4 
+            ? <>
+              <div className="text-xl">Congrats! You have completed 4 pomodoros. Time for a longer break!</div>
+              <div className="text-xl">We recommend a 20 minute break.</div>
+            </> : <> 
+              <div className="text-xl">Nice job staying focused! Time for a short break.</div>
+              <div className="text-xl">We recommend a 5 minute break.</div>
+            </>
           }
-          <div className="text-xl">We recommend a {breakTime} minute break.</div>
         </div>
         <div className="text-3xl">{breakTimer}</div>
         <div className="text-lg">Close this modal when you are ready to continue.</div>

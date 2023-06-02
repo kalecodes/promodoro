@@ -10,18 +10,7 @@ function Timer() {
   const [completed, setCompleted] = useState(0);
   const [remaining, setRemaining] = useState(4);
   const [breakModal, setBreakModal] = useState(false);
-  const [breakTime, setBreakTime] = useState(5);
   const [pomCount, setPomCount] = useState(0);
-
-  const checkRound = () => {
-    if (pomCount === 4) {
-      setBreakTime(20);
-    } else {
-      setBreakTime(5);
-    }
-
-    toggleModal();
-  }
 
   const endTimer = () => {
     clearInterval(Ref.current[0]);
@@ -30,7 +19,7 @@ function Timer() {
     setCompleted(completed + 1);
     setRemaining(remaining - 1);
 
-    checkRound();
+    toggleModal();
   }
 
   const getTimeRemaining = (e) => {
@@ -73,6 +62,11 @@ function Timer() {
 
   const handleClick = () => {
     setTimerStarted(true);
+
+    if (pomCount === 4) {
+      setPomCount(0);
+    }
+
     setPomCount(pomCount + 1);
 
     if (timerStarted) {
@@ -84,12 +78,17 @@ function Timer() {
   }
 
   const toggleModal = () => {
+    if (pomCount === 4) {
+      setCompleted(0);
+      setRemaining(4);
+    }
+
     setBreakModal(!breakModal);
   }
 
   return (
     <div className="h-1/3 lg:h-1/2 flex flex-col">
-      {breakModal && <BreakModal breakTime={breakTime} breakModal={breakModal} setBreakModal={setBreakModal} Ref={Ref} /> }
+      {breakModal && <BreakModal pomCount={pomCount} breakModal={breakModal} setBreakModal={setBreakModal} Ref={Ref} /> }
       <div className="text-2xl">Timer</div>
       <div className="w-9/10 h-4/5 m-auto">
         <div>
