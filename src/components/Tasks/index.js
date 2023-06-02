@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Task from "../Task";
+import TaskModal from "../TaskModal";
 
 function Tasks()  {
+  const [newTaskModal, setNewTaskModal] = useState(false);
+
+  const handleNewTask = () => {
+    setNewTaskModal(!newTaskModal);
+  }
+
   return(
     <section className="mt-5 lg:mt-0 lg:w-1/2 flex flex-col order-2 lg:order-none">
+      {newTaskModal && <TaskModal handleNewTask={handleNewTask}/>}
       <div className="text-2xl">Tasks</div>
       <div className="lg:w-9/10 lg:h-9/10 lg:m-auto flex flex-col">
         <div className="flex justify-between items-center w-4/5 mx-auto">
@@ -11,6 +19,7 @@ function Tasks()  {
             src={require('../../assets/icons/plus-dark.png')}
             alt="add new task"
             className="w-9"
+            onClick={handleNewTask}
           />
           <img 
             src={require('../../assets/icons/clear-dark.png')} 
