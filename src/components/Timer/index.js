@@ -62,11 +62,6 @@ function Timer() {
 
   const handleClick = () => {
     setTimerStarted(true);
-
-    if (pomCount === 4) {
-      setPomCount(0);
-    }
-
     setPomCount(pomCount + 1);
 
     if (timerStarted) {
@@ -78,11 +73,6 @@ function Timer() {
   }
 
   const toggleModal = () => {
-    if (pomCount === 4) {
-      setCompleted(0);
-      setRemaining(4);
-    }
-
     setBreakModal(!breakModal);
   }
 
