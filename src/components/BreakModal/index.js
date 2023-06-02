@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 function BreakModal({ breakTime, breakModal, setBreakModal, Ref }) {
 
@@ -45,7 +45,6 @@ function BreakModal({ breakTime, breakModal, setBreakModal, Ref }) {
   const toggleModal = () => {
     clearInterval(Ref.current[1]);
     setBreakModal(!breakModal);
-
   }
 
   return (
@@ -53,9 +52,9 @@ function BreakModal({ breakTime, breakModal, setBreakModal, Ref }) {
       <div className="w-3/5 h-3/5 mt-28 mx-auto bg-white rounded flex flex-col justify-evenly">
         <div className="text-3xl">Break</div>
         <div>
-          {breakTime === 25 
+          {breakTime === 20 
             ? <div className="text-xl">Congrats! You have completed 4 pomodoros. Time for a longer break!</div>
-            : <div className="text-xl">Nice job staying focused!</div>
+            : <div className="text-xl">Nice job staying focused! Time for a short break.</div>
           }
           <div className="text-xl">We recommend a {breakTime} minute break.</div>
         </div>

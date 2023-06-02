@@ -11,6 +11,17 @@ function Timer() {
   const [remaining, setRemaining] = useState(4);
   const [breakModal, setBreakModal] = useState(false);
   const [breakTime, setBreakTime] = useState(5);
+  const [pomCount, setPomCount] = useState(0);
+
+  const checkRound = () => {
+    if (pomCount === 4) {
+      setBreakTime(20);
+    } else {
+      setBreakTime(5);
+    }
+
+    toggleModal();
+  }
 
   const endTimer = () => {
     clearInterval(Ref.current[0]);
@@ -19,13 +30,7 @@ function Timer() {
     setCompleted(completed + 1);
     setRemaining(remaining - 1);
 
-    if (completed < 4) {
-      setBreakTime(5)
-    } else (
-      setBreakTime(20)
-    )
-
-    toggleModal();
+    checkRound();
   }
 
   const getTimeRemaining = (e) => {
@@ -37,7 +42,6 @@ function Timer() {
   }
 
   const startTimer = (e) => {
-    console.log('timer active')
     let { total, minutes, seconds } = getTimeRemaining(e);
 
     if (total >= 0) {
@@ -69,11 +73,13 @@ function Timer() {
 
   const handleClick = () => {
     setTimerStarted(true);
+    setPomCount(pomCount + 1);
 
     if (timerStarted) {
       console.log('timer cannot be paused');
       return;
     }
+
     resetTimer(getDeadTime());
   }
 
