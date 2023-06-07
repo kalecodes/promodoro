@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Task from "../Task";
 import TaskModal from "../TaskModal";
 
 function Tasks()  {
+  const [tasks, setTasks] = useState([]);
   const [newTaskModal, setNewTaskModal] = useState(false);
 
-  const handleNewTask = () => {
+  const triggerModal = () => {
     setNewTaskModal(!newTaskModal);
   }
 
@@ -15,7 +16,7 @@ function Tasks()  {
 
   return(
     <section className="mt-5 lg:mt-0 lg:w-1/2 flex flex-col order-2 lg:order-none">
-      {newTaskModal && <TaskModal handleNewTask={handleNewTask}/>}
+      {newTaskModal && <TaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} tasks={tasks} setTasks={setTasks} />}
       <div className="text-2xl">Tasks</div>
       <div className="lg:w-9/10 lg:h-9/10 lg:m-auto flex flex-col">
         <div className="flex justify-between items-center w-4/5 mx-auto">
@@ -23,7 +24,7 @@ function Tasks()  {
             src={require('../../assets/icons/plus-dark.png')}
             alt="add new task"
             className="w-9"
-            onClick={handleNewTask}
+            onClick={triggerModal}
           />
           <img 
             src={require('../../assets/icons/clear-dark.png')} 
