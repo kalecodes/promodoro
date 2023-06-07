@@ -1,19 +1,15 @@
 import React from 'react';
 
-function Task()  {
+function Task({ task })  {
   return (
-    <>
-    <div className="w-9/10 h-12 my-3 mx-auto rounded bg-gray-300 flex justify-between items-center">
-      <p className="text-left ml-5">This is an example task</p>
+    <div key={task.title} className="w-9/10 h-12 my-3 mx-auto rounded bg-gray-300 flex justify-between items-center">
+      <p className="text-left ml-5">{task.title}</p>
       <img 
         src={require('../../assets/icons/menu-dark.png')}
         alt="task options"
         className="mr-5 w-7"
       />
-    </div>
-    <div className="w-9/10 h-12 my-3 mx-auto rounded bg-gray-300 flex justify-between items-center">
-      <p className="text-left ml-5">This is another example task</p>
-      <div className="mr-5 h-full flex items-center">
+      <div className="mr-5 h-full items-center hidden">
         <img 
           src={require('../../assets/icons/sub-dark.png')} 
           alt="add sub-task"
@@ -36,7 +32,6 @@ function Task()  {
         />
       </div>
     </div>
-    </>
   )
 }
 

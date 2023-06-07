@@ -17,7 +17,7 @@ function TaskModal({ newTaskModal, setNewTaskModal, tasks, setTasks}) {
     const newTasksArr = [...tasks, task];
     setTasks(newTasksArr);
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(newTasksArr));
 
     setNewTaskModal(!newTaskModal);
   }
