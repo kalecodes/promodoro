@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 
 function Task({ task, deleteTask })  {
   const [taskMenu, setTaskMenu] = useState(false);
+  const [taskComplete, setTaskComplete] = useState(false);
 
   const toggleMenu = (e) => {
     setTaskMenu(!taskMenu);
   }
 
+  const completeTask = () => {
+    setTaskComplete(!taskComplete);
+  }
+
   return (
-    <div key={task.title} className="w-9/10 h-12 my-3 mx-auto rounded bg-gray-300 flex justify-between items-center">
+    <div key={task.title} className={taskComplete ? "bg-green-400 w-9/10 h-12 my-3 mx-auto rounded flex justify-between items-center" : "bg-gray-300 w-9/10 h-12 my-3 mx-auto rounded flex justify-between items-center"}>
       <p className="text-left ml-5">{task.title}</p>
       <img 
         src={require('../../assets/icons/menu-dark.png')}
@@ -26,6 +31,7 @@ function Task({ task, deleteTask })  {
           src={require('../../assets/icons/check-dark.png')} 
           alt="mark task complete"
           className="w-7 ml-1"
+          onClick={completeTask}
         />
         <img 
           src={require('../../assets/icons/delete-dark.png')} 
