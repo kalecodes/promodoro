@@ -5,6 +5,7 @@ import TaskModal from "../TaskModal";
 function Tasks()  {
   const [tasks, setTasks] = useState([]);
   const [newTaskModal, setNewTaskModal] = useState(false);
+  const [taskCount, setTaskCount] = useState(0);
 
   const triggerModal = () => {
     setNewTaskModal(!newTaskModal);
@@ -12,19 +13,20 @@ function Tasks()  {
 
   const clearTasks = () =>{
     setTasks([]);
-    localStorage.setItem("tasks", []);
+    localStorage.setItem("tasks", JSON.stringify([]));
   }
 
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks"));
     if (savedTasks) {
       setTasks(savedTasks);
+      setTaskCount(savedTasks.length);
     }
   }, [])
 
   return(
     <section className="mt-5 lg:mt-0 lg:w-1/2 flex flex-col order-2 lg:order-none">
-      {newTaskModal && <TaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} tasks={tasks} setTasks={setTasks} />}
+      {newTaskModal && <TaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} tasks={tasks} setTasks={setTasks} setTaskCount={setTaskCount}/>}
       <div className="text-2xl">Tasks</div>
       <div className="lg:w-9/10 lg:h-9/10 lg:m-auto flex flex-col">
         <div className="flex justify-between items-center w-4/5 mx-auto">
@@ -46,7 +48,7 @@ function Tasks()  {
         </div>
         <div className="h-1/10 flex justify-center items-center order-2 lg:order-none">
           <div className="w-1/3 min-w-fit h-7 rounded bg-gray-300">
-            0/2 Completed
+            0/{taskCount} Completed
           </div>
         </div>
       </div>
