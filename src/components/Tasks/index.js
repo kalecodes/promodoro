@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Task from "../Task";
 import TaskModal from "../TaskModal";
+import SubtaskModal from "../SubtaskModal";
 
 function Tasks()  {
   const [tasks, setTasks] = useState([]);
   const [newTaskModal, setNewTaskModal] = useState(false);
+  const [subtaskModal, setSubtaskModal] = useState(false);
+  const [focusedTaskTitle, setFocusedTaskTitle] = useState('')
   const [taskCount, setTaskCount] = useState(0);
 
   const triggerModal = () => {
@@ -16,6 +19,11 @@ function Tasks()  {
     localStorage.setItem("tasks", JSON.stringify([]));
   }
 
+  const triggerSubtaskModal = (e) => {
+    setFocusedTaskTitle(e.target.parentElement.parentElement.textContent);
+    setSubtaskModal(!subtaskModal);
+  }
+
   const deleteTask = (e) => {
     const taskText = e.target.parentElement.parentElement.firstChild.textContent;
     const tempArray = tasks.filter((task) => {
@@ -24,6 +32,10 @@ function Tasks()  {
 
     setTasks(tempArray);
     localStorage.setItem("tasks", JSON.stringify(tempArray));
+  }
+
+  const deleteSubtask = (e) => {
+    console.log(e.target);
   }
 
   useEffect(() => {
@@ -37,6 +49,7 @@ function Tasks()  {
   return(
     <section className="mt-5 lg:mt-0 lg:w-1/2 flex flex-col order-2 lg:order-none">
       {newTaskModal && <TaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} tasks={tasks} setTasks={setTasks} setTaskCount={setTaskCount} />}
+      {subtaskModal && <SubtaskModal subtaskModal={subtaskModal} setSubtaskModal={setSubtaskModal} focusedTaskTitle={focusedTaskTitle} setFocusedTaskTitle={setFocusedTaskTitle} tasks={tasks} setTasks={setTasks}/>}
       <div className="text-2xl">Tasks</div>
       <div className="lg:w-9/10 lg:h-9/10 lg:m-auto flex flex-col">
         <div className="flex justify-between items-center w-4/5 mx-auto">
@@ -54,7 +67,7 @@ function Tasks()  {
           />
         </div>
         <div id="task-container" className="h-5/6 overflow-scroll order-3 lg:order-none">
-          {tasks && tasks.map((task) => <Task task={task} deleteTask={deleteTask} key={task.title}/>)}
+          {tasks && tasks.map((task) => <Task task={task} triggerSubtaskModal={triggerSubtaskModal} deleteTask={deleteTask} deleteSubtask={deleteSubtask} key={task.title}/>)}
         </div>
         <div className="h-1/10 flex justify-center items-center order-2 lg:order-none">
           <div className="w-1/3 min-w-fit h-7 rounded bg-gray-300">
