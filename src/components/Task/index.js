@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Task({ task })  {
+function Task({ task, deleteTask })  {
   const [taskMenu, setTaskMenu] = useState(false);
 
   const toggleMenu = (e) => {
@@ -14,33 +14,29 @@ function Task({ task })  {
         src={require('../../assets/icons/menu-dark.png')}
         alt="task options"
         className={taskMenu ? "mr-5 w-7 hidden" : "mr-5 w-7"}
-        data-id="menu"
         onClick={toggleMenu}
       />
-      <div className={taskMenu ? "mr-5 h-full flex items-center" : "mr-5 h-full items-center hidden"} data-id="menu-div">
+      <div className={taskMenu ? "mr-5 h-full flex items-center" : "mr-5 h-full items-center hidden"}>
         <img 
           src={require('../../assets/icons/sub-dark.png')} 
           alt="add sub-task"
           className="w-8 ml-1"
-          data-id="subtask"
         />
         <img 
           src={require('../../assets/icons/check-dark.png')} 
           alt="mark task complete"
           className="w-7 ml-1"
-          data-id="complete"
         />
         <img 
           src={require('../../assets/icons/delete-dark.png')} 
           alt="delete task"
           className="w-7 ml-1"
-          data-id="delete"
+          onClick={deleteTask}
         />
         <img 
           src={require('../../assets/icons/close-dark.png')} 
           alt="close menu"
           className="w-7 ml-1"
-          data-id="close"
           onClick={toggleMenu}
         />
       </div>

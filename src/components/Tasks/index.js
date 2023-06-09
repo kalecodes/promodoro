@@ -11,9 +11,19 @@ function Tasks()  {
     setNewTaskModal(!newTaskModal);
   }
 
-  const clearTasks = () =>{
+  const clearTasks = () => {
     setTasks([]);
     localStorage.setItem("tasks", JSON.stringify([]));
+  }
+
+  const deleteTask = (e) => {
+    const taskText = e.target.parentElement.parentElement.firstChild.textContent;
+    const tempArray = tasks.filter((task) => {
+      return task.title !== taskText
+    });
+
+    setTasks(tempArray);
+    localStorage.setItem("tasks", JSON.stringify(tempArray));
   }
 
   useEffect(() => {
@@ -26,7 +36,7 @@ function Tasks()  {
 
   return(
     <section className="mt-5 lg:mt-0 lg:w-1/2 flex flex-col order-2 lg:order-none">
-      {newTaskModal && <TaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} tasks={tasks} setTasks={setTasks} setTaskCount={setTaskCount}/>}
+      {newTaskModal && <TaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} tasks={tasks} setTasks={setTasks} setTaskCount={setTaskCount} />}
       <div className="text-2xl">Tasks</div>
       <div className="lg:w-9/10 lg:h-9/10 lg:m-auto flex flex-col">
         <div className="flex justify-between items-center w-4/5 mx-auto">
@@ -44,7 +54,7 @@ function Tasks()  {
           />
         </div>
         <div id="task-container" className="h-5/6 overflow-scroll order-3 lg:order-none">
-          {tasks && tasks.map((task) => <Task task={task} key={task.title}/>)}
+          {tasks && tasks.map((task) => <Task task={task} deleteTask={deleteTask} key={task.title}/>)}
         </div>
         <div className="h-1/10 flex justify-center items-center order-2 lg:order-none">
           <div className="w-1/3 min-w-fit h-7 rounded bg-gray-300">
