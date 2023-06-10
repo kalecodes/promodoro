@@ -14,7 +14,7 @@ function Task({ task, triggerSubtaskModal, deleteTask, deleteSubtask })  {
   }
 
   return (
-    <>
+    <div>
       <div key={task.title} className={taskComplete ? "bg-green-400 w-9/10 h-12 my-3 mx-auto rounded flex justify-between items-center" : "bg-gray-300 w-9/10 h-12 my-3 mx-auto rounded flex justify-between items-center"}>
         <p className="text-left ml-5">{task.title}</p>
         <img 
@@ -51,7 +51,7 @@ function Task({ task, triggerSubtaskModal, deleteTask, deleteSubtask })  {
         </div>
       </div>
       {task.subTasks && task.subTasks.map((subtask) => <SubTask subtask={subtask} deleteSubtask={deleteSubtask} key={subtask}/>)}
-    </>
+    </div>
   )
 }
 

@@ -26,7 +26,7 @@ function Tasks()  {
 
   const deleteTask = (e) => {
     const taskText = e.target.parentElement.parentElement.firstChild.textContent;
-    const tempArray = tasks.filter((task) => {
+    const tempArray = tasks.filter(task => {
       return task.title !== taskText
     });
 
@@ -35,7 +35,21 @@ function Tasks()  {
   }
 
   const deleteSubtask = (e) => {
-    console.log(e.target);
+    const mainTaskTitle = e.target.parentElement.parentElement.parentElement.firstChild.textContent;
+    const subtaskTitle = e.target.parentElement.parentElement.firstChild.textContent;
+
+    const tempArray = tasks;
+
+    const taskObjIndex = tempArray.findIndex(task => task.title === mainTaskTitle);
+
+    const tempSubArray = tempArray[taskObjIndex].subTasks.filter(subtask => {
+      return subtask !== subtaskTitle;
+    });
+
+    tempArray[taskObjIndex].subTasks = tempSubArray;
+
+    setTasks(tempArray);
+    localStorage.setItem("tasks", JSON.stringify(tempArray));
   }
 
   useEffect(() => {
