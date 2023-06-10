@@ -63,7 +63,7 @@ function Tasks()  {
   return(
     <section className="mt-5 lg:mt-0 lg:w-1/2 flex flex-col order-2 lg:order-none">
       {newTaskModal && <TaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} tasks={tasks} setTasks={setTasks} setTaskCount={setTaskCount} />}
-      {subtaskModal && <SubtaskModal subtaskModal={subtaskModal} setSubtaskModal={setSubtaskModal} focusedTaskTitle={focusedTaskTitle} setFocusedTaskTitle={setFocusedTaskTitle} tasks={tasks} setTasks={setTasks}/>}
+      {subtaskModal && <SubtaskModal subtaskModal={subtaskModal} setSubtaskModal={setSubtaskModal} focusedTaskTitle={focusedTaskTitle} setFocusedTaskTitle={setFocusedTaskTitle} tasks={tasks} setTasks={setTasks} />}
       <div className="text-2xl">Tasks</div>
       <div className="lg:w-9/10 lg:h-9/10 lg:m-auto flex flex-col">
         <div className="flex justify-between items-center w-4/5 mx-auto">
