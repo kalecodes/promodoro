@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Tooltip } from "react-tooltip";
 import Task from "../Task";
 import TaskModal from "../TaskModal";
 import SubtaskModal from "../SubtaskModal";
@@ -74,13 +75,19 @@ function Tasks()  {
             alt="add new task"
             className="w-9"
             onClick={triggerModal}
+            data-tooltip-id="add-task-tt"
+            data-tooltip-content="Add a New Task"
           />
+          <Tooltip id="add-task-tt" />
           <img 
             src={require('../../assets/icons/clear-dark.png')} 
             alt="clear all tasks"
             className="w-9"
             onClick={clearTasks}
+            data-tooltip-id="clear-tasks-tt"
+            data-tooltip-content="Clear All Tasks"
           />
+          <Tooltip id="clear-tasks-tt" />
         </div>
         <div id="task-container" className="h-5/6 overflow-scroll order-3 lg:order-none">
           {tasks && tasks.map((task) => <Task task={task} triggerSubtaskModal={triggerSubtaskModal} deleteTask={deleteTask} deleteSubtask={deleteSubtask} key={task.title}/>)}

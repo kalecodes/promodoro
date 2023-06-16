@@ -18,15 +18,10 @@ function SubtaskModal({ subtaskModal, setSubtaskModal, focusedTaskTitle, setFocu
   }
 
   const submitSubtask = () => {
-    console.log(focusedTaskTitle);
-    console.log(subtaskTitle);
-
     const tempArray = tasks;
     const taskObjIndex = tempArray.findIndex((task => task.title === focusedTaskTitle));
-    console.log(taskObjIndex);
 
     tempArray[taskObjIndex].subTasks.push(subtaskTitle);
-    console.log(tempArray);
 
     setTasks(tempArray);
     localStorage.setItem("tasks", JSON.stringify(tempArray));
