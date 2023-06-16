@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Tooltip } from "react-tooltip";
 import BreakModal from "../BreakModal";
 
 function Timer() {
@@ -84,8 +85,8 @@ function Timer() {
         <div>
           <button className="text-xl py-2 px-4 rounded-l bg-gray-300" onClick={() => {setSelectedTimer(25); setTimer('25:00')}}>25</button>
           <button className="text-xl py-2 px-4 bg-gray-300" onClick={() => {setSelectedTimer(35); setTimer('35:00')}}>35</button>
-          <button className="text-xl py-2 px-4 bg-gray-300" onClick={() => {setSelectedTimer(45); setTimer('45:00')}}>45</button>
-          <button className="text-xl py-2 px-4 rounded-r bg-gray-300">+</button>
+          <button className="text-xl py-2 px-4 rounded-r bg-gray-300" onClick={() => {setSelectedTimer(45); setTimer('45:00')}}>45</button>
+          {/* <button className="text-xl py-2 px-4 rounded-r bg-gray-300">+</button> */}
         </div>
         <div className="h-3/4 flex flex-col justify-evenly items-center">
           <img 
@@ -93,7 +94,10 @@ function Timer() {
             alt="start timer"
             className="w-16 py-3 lg:py-0"
             onClick={() => handleClick(selectedTimer)}
+            data-tooltip-id="start-timer-tt"
+            data-tooltip-content="Start Timer"
           />
+          <Tooltip id="start-timer-tt" />
           <div className="text-3xl">{timer}</div>
         </div>
         <div className="flex justify-evenly">

@@ -69,7 +69,7 @@ function Tasks()  {
       {subtaskModal && <SubtaskModal subtaskModal={subtaskModal} setSubtaskModal={setSubtaskModal} focusedTaskTitle={focusedTaskTitle} setFocusedTaskTitle={setFocusedTaskTitle} tasks={tasks} setTasks={setTasks} />}
       <div className="text-2xl">Tasks</div>
       <div className="lg:w-9/10 lg:h-9/10 lg:m-auto flex flex-col">
-        <div className="flex justify-between items-center w-4/5 mx-auto">
+        <div className="pb-2 flex justify-between items-center w-4/5 mx-auto">
           <img 
             src={require('../../assets/icons/plus-dark.png')}
             alt="add new task"
