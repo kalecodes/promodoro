@@ -21,7 +21,7 @@ function Tasks()  {
   }
 
   const triggerSubtaskModal = (e) => {
-    setFocusedTaskTitle(e.target.parentElement.parentElement.textContent);
+    setFocusedTaskTitle(e.target.parentElement.parentElement.firstChild.textContent);
     setSubtaskModal(!subtaskModal);
   }
 
