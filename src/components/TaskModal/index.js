@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function TaskModal({ newTaskModal, setNewTaskModal, tasks, setTasks, setTaskCount }) {
+function TaskModal({ newTaskModal, setNewTaskModal, tasks, setTasks }) {
   const [taskTitle, setTaskTitle] = useState('');
 
   const stopProp = (e) => {
@@ -24,7 +24,7 @@ function TaskModal({ newTaskModal, setNewTaskModal, tasks, setTasks, setTaskCoun
 
     const newTasksArr = [...tasks, task];
     setTasks(newTasksArr);
-    setTaskCount(newTasksArr.length);
+    // setTaskCount(newTasksArr.length);
 
     localStorage.setItem("tasks", JSON.stringify(newTasksArr));
 
